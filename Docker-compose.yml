@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:
+  my-db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+    ports:
+      - 3306:3306
+    networks:
+      - my-network
+
+  my-api:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    ports:
+      - 8080:8080
+    depends_on:
+      - my-db
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
