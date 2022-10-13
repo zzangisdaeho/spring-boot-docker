@@ -23,6 +23,10 @@ services:
       - my-db
     networks:
       - my-network
+    environment:
+      MYSQL_DB: mydb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
 
 networks:
   my-network:
